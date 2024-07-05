@@ -42,7 +42,9 @@ const server = app.listen(PORT, () => {
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "http://localhost:3000", // Adjust as needed for your client's origin
+    origin: "https://vercel.com/chandraprakash098s-projects/chat-app", // Replace with your Vercel app URL
+    methods: ["GET", "POST"],
+    credentials: true,
   },
 });
 
@@ -80,3 +82,5 @@ io.on("connection", (socket) => {
     });
   });
 });
+
+module.exports = app;
