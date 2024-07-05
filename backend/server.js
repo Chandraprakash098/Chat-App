@@ -18,29 +18,25 @@ connectDB();
 app.use(cors());
 app.use(express.json());
 
-// app.get("/", (req, res) => {
-//   res.send("Hello, this is the chat app!");
-// });
-
 app.use("/api/user", authRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/message", messageRoutes);
 
-// ---------------
-const __dirname1 = path.resolve();
-app.use(express.static(path.join(__dirname1, "../frontend/build")));
+// Serve static assets if in production
+if (process.env.NODE_ENV === "production") {
+  // Set static folder
+  app.use(express.static(path.join(__dirname, "../frontend/build")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname1, "../frontend", "build", "index.html"));
-});
-
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../frontend", "build", "index.html"));
+  });
+}
 
 const PORT = process.env.PORT || 3500;
 
 const server = app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
-  console.log(`__dirname1: ${__dirname1}`);
-  console.log(`Static path: ${path.join(__dirname1, "../frontend/build")}`);
+  console.log(`Static path: ${path.join(__dirname, "../frontend/build")}`);
 });
 
 const io = require("socket.io")(server, {
@@ -50,6 +46,7 @@ const io = require("socket.io")(server, {
   },
 });
 
+// Socket.io logic
 io.on("connection", (socket) => {
   console.log("Connected to socket.io");
 
