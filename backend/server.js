@@ -42,7 +42,7 @@ const server = app.listen(PORT, () => {
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "https://vercel.com/chandraprakash098s-projects/chat-app", // Replace with your Vercel app URL
+    origin: "https://vercel.com/chandraprakash098s-projects/chat-app2", // Replace with your Vercel app URL
     methods: ["GET", "POST"],
     credentials: true,
   },
