@@ -9,7 +9,7 @@ const path = require("path");
 
 dotenv.config();
 console.log("Dotenv config loaded");
-console.log("All environment variables:", process.env);
+
 
 const app = express();
 
@@ -42,7 +42,7 @@ const server = app.listen(PORT, () => {
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "https://vercel.com/chandraprakash098s-projects/chat-app2", // Replace with your Vercel app URL
+    origin: "*", 
     methods: ["GET", "POST"],
     credentials: true,
   },

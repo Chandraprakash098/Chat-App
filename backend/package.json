@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm install --prefix frontend && npm run build --prefix frontend",
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "cd frontend && npm install && npm run build"
   },
   "keywords": [],
   "author": "Chandra Prakash",
@@ -21,6 +20,7 @@
     "http-proxy": "^1.18.1",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.4.4",
-    "nodemon": "^3.1.4"
+    "nodemon": "^3.1.4",
+    "socket.io": "^4.7.5"
   }
 }
